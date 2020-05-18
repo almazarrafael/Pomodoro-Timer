@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="picture">
+    <file>icontext.png</file>
+  </qresource>
+</RCC>

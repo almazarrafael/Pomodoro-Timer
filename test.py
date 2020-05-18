@@ -1,0 +1,113 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QTimer
+import sys
+import time
+import random
+
+numSec = 500
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(638, 295)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.lcdNumber = QtWidgets.QLCDNumber(self.centralwidget)
+        self.lcdNumber.setGeometry(QtCore.QRect(20, 20, 421, 241))
+        self.lcdNumber.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lcdNumber.setSmallDecimalPoint(False)
+        self.lcdNumber.setMode(QtWidgets.QLCDNumber.Dec)
+        self.lcdNumber.setSegmentStyle(QtWidgets.QLCDNumber.Filled)
+        self.lcdNumber.setObjectName("lcdNumber")
+        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
+        self.tabWidget.setGeometry(QtCore.QRect(460, 20, 161, 241))
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.pushButton = QtWidgets.QPushButton(self.tab)
+        self.pushButton.setGeometry(QtCore.QRect(20, 20, 111, 51))
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_2 = QtWidgets.QPushButton(self.tab)
+        self.pushButton_2.setGeometry(QtCore.QRect(20, 80, 111, 51))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QtWidgets.QPushButton(self.tab)
+        self.pushButton_3.setGeometry(QtCore.QRect(20, 140, 111, 51))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setObjectName("tab_2")
+        self.label_3 = QtWidgets.QLabel(self.tab_2)
+        self.label_3.setGeometry(QtCore.QRect(10, 10, 31, 16))
+        self.label_3.setObjectName("label_3")
+        self.spinBox = QtWidgets.QSpinBox(self.tab_2)
+        self.spinBox.setGeometry(QtCore.QRect(10, 30, 91, 21))
+        self.spinBox.setMaximum(9999)
+        self.spinBox.setObjectName("spinBox")
+        self.label_4 = QtWidgets.QLabel(self.tab_2)
+        self.label_4.setGeometry(QtCore.QRect(105, 35, 41, 16))
+        self.label_4.setObjectName("label_4")
+        self.label_5 = QtWidgets.QLabel(self.tab_2)
+        self.label_5.setGeometry(QtCore.QRect(105, 100, 41, 16))
+        self.label_5.setObjectName("label_5")
+        self.label_6 = QtWidgets.QLabel(self.tab_2)
+        self.label_6.setGeometry(QtCore.QRect(10, 75, 41, 16))
+        self.label_6.setObjectName("label_6")
+        self.spinBox_2 = QtWidgets.QSpinBox(self.tab_2)
+        self.spinBox_2.setGeometry(QtCore.QRect(10, 95, 91, 21))
+        self.spinBox_2.setMaximum(9999)
+        self.spinBox_2.setObjectName("spinBox_2")
+        self.checkBox = QtWidgets.QCheckBox(self.tab_2)
+        self.checkBox.setGeometry(QtCore.QRect(40, 160, 81, 17))
+        self.checkBox.setObjectName("checkBox")
+        self.tabWidget.addTab(self.tab_2, "")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(25, 260, 71, 16))
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(100, 260, 81, 16))
+        self.label_2.setObjectName("label_2")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 638, 21))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        self.tabWidget.setCurrentIndex(1)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.updateLCD)
+        self.timer.start(1000)
+
+    def updateLCD(self):
+        global numSec
+        self.lcdNumber.display(numSec)
+        numSec -= 1
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "Pomodoro Timer - Rafael Almazar"))
+        self.pushButton.setText(_translate("MainWindow", "Start"))
+        self.pushButton_2.setText(_translate("MainWindow", "Stop"))
+        self.pushButton_3.setText(_translate("MainWindow", "Change Mode"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Home"))
+        self.label_3.setText(_translate("MainWindow", "Study:"))
+        self.label_4.setText(_translate("MainWindow", "seconds"))
+        self.label_5.setText(_translate("MainWindow", "seconds"))
+        self.label_6.setText(_translate("MainWindow", "Break:"))
+        self.checkBox.setText(_translate("MainWindow", "Alert Sound"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Settings"))
+        self.label.setText(_translate("MainWindow", "Current Mode:"))
+        self.label_2.setText(_translate("MainWindow", "Study (Paused)"))
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
