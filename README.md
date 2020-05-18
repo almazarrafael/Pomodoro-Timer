@@ -24,6 +24,8 @@ Python pomodoro timer based on PyQt5
 
 I've made a pomodoro timer before but the one I made was based on an Arduino circuit and wasn't as complex as this one because this one allowed the option to change the amount of time you want per mode and also had a reset button and a notification sound when the timer ends. A problem I had in my other PyQt5 programs was that whenever the program was running, it wouldn't be able to listen to user input signlas because I used python's time library that would completely halt the program. Instead, for this program I used PyQt5's QTime module that would allow the program to asynchronously run the timer while also being able to listen for user input such as when the user wants to pause, reset and ect. Originally, I thought the program was going to be straightforward, but there were a lot of subtle problems that occured when translating my logic into a GUI compatible format.
 
+[Notification Sound Used](https://notificationsounds.com/message-tones/juntos-607)
+
 ## images
 Home Menu
 
