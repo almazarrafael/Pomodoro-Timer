@@ -1,7 +1,7 @@
 # Pomoodoro Timer
 
 ## description
-Python pomodoro timer based on PyQt5
+Customizable pomodoro timer with different modes built on PyQt5 to be used with the Pomodoro technique for studying.
 
 ## function
 
